@@ -3,11 +3,7 @@ with "config";
 
 library project Middleware is
 
-   Src_Dirs := ("src/filesystems",
-                "src/BLE",
-                "src/utils",
-                "src/audio",
-                "src/bitmap");
+   Src_Dirs := ("src/bitmap");
 
    case Config.RTS is
       when "ravenscar-sfp" | "ravenscar-full" =>
