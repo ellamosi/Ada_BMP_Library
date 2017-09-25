@@ -1,4 +1,4 @@
-with "config";
+with "../filesystem/config";
 
 library project HAL is
 
