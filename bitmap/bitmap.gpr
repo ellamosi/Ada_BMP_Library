@@ -1,9 +1,9 @@
 with "../hal/HAL";
 with "config";
 
-library project Middleware is
+library project Bitmap is
 
-   Src_Dirs := ("src/bitmap");
+   Src_Dirs := ("src");
 
    case Config.RTS is
       when "ravenscar-sfp" | "ravenscar-full" =>
@@ -23,4 +23,4 @@ library project Middleware is
    package Compiler renames Config.Compiler;
    package Builder renames Config.Builder;
 
-end Middleware;
+end Bitmap;

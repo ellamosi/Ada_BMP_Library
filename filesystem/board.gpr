@@ -1,5 +1,4 @@
 with "config";
-with "../../components/components";
 
 library project Board is
 

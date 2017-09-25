@@ -1,5 +1,5 @@
 
-project Test_Utils extends "../../boards/common_config.gpr" is
+project Test_Utils extends "../../common_config.gpr" is
 
    for Source_Dirs use ("src");
    for Languages use ("Ada");

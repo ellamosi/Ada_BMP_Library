@@ -1,5 +1,5 @@
-with "../../../boards/native";
-with "../../../boards/native/config";
+with "../../../filesystem/native";
+with "../../../filesystem/config";
 
 project TC extends "../../utils/test_utils.gpr" is
 

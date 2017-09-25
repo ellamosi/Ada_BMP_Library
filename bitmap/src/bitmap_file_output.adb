@@ -86,6 +86,8 @@ package body Bitmap_File_Output is
    begin
       Hdr.Signature := 16#4D42#;
       Hdr.Size      := (Data_Size + 54) / 4;
+      Hdr.Reserved1 := 0;
+      Hdr.Reserved2 := 0;
       Hdr.Offset    := 54;
 
       Inf.Struct_Size := 40;
