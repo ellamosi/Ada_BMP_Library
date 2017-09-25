@@ -1,21 +1,9 @@
-[![Build Status](https://travis-ci.org/AdaCore/Ada_Drivers_Library.svg?branch=master)](https://travis-ci.org/AdaCore/Ada_Drivers_Library)
-[![Build status](https://ci.appveyor.com/api/projects/status/dvay075xkwxgppwm?svg=true)](https://ci.appveyor.com/project/AdaCore/ada-drivers-library)
-
-## Warning!
-
-This repository uses git submodule, please clone with the `--recursive` option:
-
-```shell
-git clone --recursive https://github.com/AdaCore/Ada_Drivers_Library.git
-```
+[![Build Status](https://travis-ci.org/ellamosi/Ada_BMP_Library.svg?branch=master)](https://travis-ci.org/ellamosi/Ada_BMP_Library)
 
 # 1. Introduction
 
-This repository contains Ada source code and complete sample GNAT projects for
-selected bare-board platforms supported by GNAT.  Initially the repository
-contains software for ARM platforms from a specific vendor, but we intend this
-to be a location for both AdaCore and the community in general to contribute
-support for additional processors, platforms, and vendors.
+This project aims to provide basic bitmap handling capabilities and BMP file
+I/O. It's a fork of the Ada Drivers Library project.
 
 
 # 2. License
@@ -45,51 +33,3 @@ compiler for ARM ELF is one such compiler [(Download it
 here)](http://libre.adacore.com/download/configurations). A recent GNAT Pro
 compiler for that target will also suffice.
 
-
-# 4. Content
-
-Initial provision is for the hardware in the STM32F4 family of 32-bit MCUs, as
-defined in the "RM0090 Reference Manual" (Doc ID 018909 Rev 6, Feb 2014) by
-STMicroelectronics and made available on the "STM32F4 Discovery" and the
-"STM32F429 Discovery" kit boards.
-
-Specifically, there are low-level device drivers, higher-level component drivers,
-small demonstration programs for the drivers, and larger example applications.
-"Component" drivers are those that are implemented using the lower-level device
-drivers (e.g., SPI or GPIO), such as the gyroscope and accelerometer on the
-Discovery boards.
-
-The small driver demonstration programs and the larger applications programs are
-provided as full projects, including GNAT project files, and are ready to build
-either within GPS or on the command-line.
-
-Not all devices defined by the Reference Manual are supported, and not all those
-supported are complete. We encourage contributions of corrections, enhancements,
-and new drivers.
-
-# 5. Roadmap
-
-Here is a list of projects that we are either dreaming about or already working
-on. If you are interested by one of those, please contact us on the projects's
-GitHub page.
-
-* ARM
- * STM32F4/7 USB drivers
-* Components
- * BlueNRG-MS (Bluetooth Low Energy Network Processor)
-* Services
- * Bluetooth Low Energy stack
- * USB stack
-
-# 6. Project using the Ada_Drivers_Library
-
- * [Certyflie: Ada/SPARK flight controller for the Crazyflie 2.0](https://github.com/AdaCore/Certyflie)
- * [ACNC: A Gcode interpreter and CNC controller](https://github.com/Fabien-Chouteau/ACNC)
- * [AMCQ: Multiple Choice Questions candy dispenser](https://github.com/Fabien-Chouteau/AMCQ)
- * [Giza: Giza is trying to be a simple widget tool kit for embedded platforms](https://github.com/Fabien-Chouteau/Giza)
- * [solenoid-engine-controller: Software controller for solenoid engines](https://github.com/Fabien-Chouteau/solenoid-engine-controller)
- * [un_pola: DIY instant camera with OpenMV](https://github.com/Fabien-Chouteau/un_pola)
- * [bare metal demos: Various Ada Demos on STM32*-Disco boards using this library](https://github.com/lambourg/Ada_Bare_Metal_Demos)
- * [SPARK Railway Demo: Simulated railway network in SPARK/Ada](https://github.com/AdaCore/SPARK_Railway_Simulation_Demo)
-
-(Add yours to the list!)
