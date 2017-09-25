@@ -11,3 +11,4 @@
 *.stderr
 *.stdout
 *~
+*.DS_Store
