@@ -29,12 +29,11 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with HAL;                 use HAL;
-with HAL.Bitmap;          use HAL.Bitmap;
-with Soft_Drawing_Bitmap; use Soft_Drawing_Bitmap;
+with Bitmap.Soft_Drawing; use Bitmap.Soft_Drawing;
 with System;
+with Bitmap.Buffer;       use Bitmap.Buffer;
 
-package Memory_Mapped_Bitmap is
+package Bitmap.Memory_Mapped is
 
    subtype Parent is Soft_Drawing_Bitmap_Buffer;
 
@@ -128,4 +127,4 @@ package Memory_Mapped_Bitmap is
    overriding
    function Buffer_Size (Buffer : Memory_Mapped_Bitmap_Buffer) return Natural;
 
-end Memory_Mapped_Bitmap;
+end Bitmap.Memory_Mapped;

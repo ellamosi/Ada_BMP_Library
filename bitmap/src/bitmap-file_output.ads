@@ -29,12 +29,12 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with HAL.Filesystem; use HAL.Filesystem;
-with HAL.Bitmap;     use HAL.Bitmap;
+with Bitmap.Filesystem; use Bitmap.Filesystem;
+with Bitmap.Buffer;     use Bitmap.Buffer;
 
-package Bitmap_File_Output is
+package Bitmap.File_Output is
 
    procedure Write_BMP_File (File   : in out File_Handle'Class;
                              Bitmap : Bitmap_Buffer'Class);
 
-end Bitmap_File_Output;
+end Bitmap.File_Output;

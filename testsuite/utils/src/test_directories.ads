@@ -31,11 +31,10 @@
 
 with Ada.Command_Line;
 with Ada.Directories;
-with HAL.Filesystem;    use HAL.Filesystem;
-with Native.Filesystem; use Native.Filesystem;
+with Bitmap.Filesystem; use Bitmap.Filesystem;
 
 package Test_Directories is
-   Program_Abspath : constant Pathname := Native.Filesystem.Join
+   Program_Abspath : constant Pathname := Bitmap.Filesystem.Join
      (Ada.Directories.Current_Directory, Ada.Command_Line.Command_Name, False);
    --  Absolute path of the test executable
 

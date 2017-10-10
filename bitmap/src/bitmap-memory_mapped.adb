@@ -30,9 +30,9 @@
 ------------------------------------------------------------------------------
 
 with System.Storage_Elements; use System.Storage_Elements;
-with Bitmap_Color_Conversion; use Bitmap_Color_Conversion;
+with Bitmap.Color_Conversion; use Bitmap.Color_Conversion;
 
-package body Memory_Mapped_Bitmap is
+package body Bitmap.Memory_Mapped is
 
    procedure Handle_Swap
      (Buffer : Bitmap_Buffer'Class;
@@ -343,4 +343,4 @@ package body Memory_Mapped_Bitmap is
       return Bits_Per_Pixel (Buffer.Color_Mode) *
         Buffer.Width * Buffer.Height / 8;
    end Buffer_Size;
-end Memory_Mapped_Bitmap;
+end Bitmap.Memory_Mapped;

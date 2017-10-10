@@ -29,9 +29,9 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with Bitmap_Color_Conversion; use Bitmap_Color_Conversion;
+with Bitmap.Color_Conversion; use Bitmap.Color_Conversion;
 
-package body Soft_Drawing_Bitmap is
+package body Bitmap.Soft_Drawing is
 
    subtype Dispatch is Soft_Drawing_Bitmap_Buffer'Class;
 
@@ -784,4 +784,4 @@ package body Soft_Drawing_Bitmap is
       end loop;
    end Cubic_Bezier;
 
-end Soft_Drawing_Bitmap;
+end Bitmap.Soft_Drawing;

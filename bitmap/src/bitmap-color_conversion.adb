@@ -29,7 +29,7 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-package body Bitmap_Color_Conversion is
+package body Bitmap.Color_Conversion is
 
    --------------------------
    -- Bitmap_Color_To_Word --
@@ -257,4 +257,4 @@ package body Bitmap_Color_Conversion is
               Blue  => B);
    end Word_To_Bitmap_Color;
 
-end Bitmap_Color_Conversion;
+end Bitmap.Color_Conversion;

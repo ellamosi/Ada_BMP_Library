@@ -30,9 +30,8 @@
 ------------------------------------------------------------------------------
 
 with Interfaces; use Interfaces;
-with HAL;        use HAL;
 
-package body Bitmap_File_Output is
+package body Bitmap.File_Output is
 
    type Header (As_Array : Boolean := True) is record
       case As_Array is
@@ -138,4 +137,4 @@ package body Bitmap_File_Output is
       end loop;
    end Write_BMP_File;
 
-end Bitmap_File_Output;
+end Bitmap.File_Output;

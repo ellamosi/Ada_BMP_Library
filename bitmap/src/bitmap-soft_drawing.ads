@@ -32,10 +32,9 @@
 --  This package provides a software implementation of the HAL.Bitmap drawing
 --  primitives.
 
-with HAL;        use HAL;
-with HAL.Bitmap; use HAL.Bitmap;
+with Bitmap.Buffer; use Bitmap.Buffer;
 
-package Soft_Drawing_Bitmap is
+package Bitmap.Soft_Drawing is
 
    subtype Parent is Bitmap_Buffer;
 
@@ -205,4 +204,4 @@ package Soft_Drawing_Bitmap is
       N              : Positive := 20;
       Thickness      : Natural := 1);
 
-end Soft_Drawing_Bitmap;
+end Bitmap.Soft_Drawing;

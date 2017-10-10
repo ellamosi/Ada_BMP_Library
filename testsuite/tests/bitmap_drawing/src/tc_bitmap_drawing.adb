@@ -1,11 +1,10 @@
 with Test_Directories;     use Test_Directories;
 with Ada.Text_IO;          use Ada.Text_IO;
-with Native.Filesystem;    use Native.Filesystem;
-with HAL;                  use HAL;
-with HAL.Filesystem;       use HAL.Filesystem;
-with HAL.Bitmap;           use HAL.Bitmap;
-with Memory_Mapped_Bitmap; use Memory_Mapped_Bitmap;
-with Bitmap_File_Output;   use Bitmap_File_Output;
+with Bitmap;               use Bitmap;
+with Bitmap.Buffer;        use Bitmap.Buffer;
+with Bitmap.Filesystem;    use Bitmap.Filesystem;
+with Bitmap.File_Output;   use Bitmap.File_Output;
+with Bitmap.Memory_Mapped; use Bitmap.Memory_Mapped;
 with Compare_Files;
 
 procedure TC_Bitmap_Drawing is
@@ -20,7 +19,7 @@ procedure TC_Bitmap_Drawing is
    ---------------------
 
    function Allocate_Bitmap return not null Any_Bitmap_Buffer is
-      type Pixel_Data is new HAL.UInt16_Array (1 .. BM_Height * BM_Height) with Pack;
+      type Pixel_Data is new Bitmap.UInt16_Array (1 .. BM_Height * BM_Height) with Pack;
       BM : constant Any_Memory_Mapped_Bitmap_Buffer := new Memory_Mapped_Bitmap_Buffer;
       Data : constant access Pixel_Data := new Pixel_Data;
    begin
@@ -32,7 +31,7 @@ procedure TC_Bitmap_Drawing is
       return Any_Bitmap_Buffer (BM);
    end Allocate_Bitmap;
 
-   FS       : Native_FS_Driver;
+   FS       : FS_Driver;
    BMP_File : Any_File_Handle;
    Status   : Status_Kind;
    BM       : constant not null Any_Bitmap_Buffer := Allocate_Bitmap;

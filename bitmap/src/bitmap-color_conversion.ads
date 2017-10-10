@@ -29,10 +29,7 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with HAL;        use HAL;
-with HAL.Bitmap; use HAL.Bitmap;
-
-package Bitmap_Color_Conversion is
+package Bitmap.Color_Conversion is
 
    function Bitmap_Color_To_Word
      (Mode : Bitmap_Color_Mode; Col : Bitmap_Color)
@@ -44,4 +41,4 @@ package Bitmap_Color_Conversion is
      return Bitmap_Color;
    --  Translates the native buffer color into DMA2D Color
 
-end Bitmap_Color_Conversion;
+end Bitmap.Color_Conversion;
