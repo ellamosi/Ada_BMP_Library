@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 --                                                                          --
---                        Copyright (C) 2017, AdaCore                       --
+--                     Copyright (C) 2015-2017, AdaCore                     --
 --                                                                          --
 --  Redistribution and use in source and binary forms, with or without      --
 --  modification, are permitted provided that the following conditions are  --
@@ -29,18 +29,20 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with Ada.Command_Line;
-with Ada.Directories;
-with Filesystem;
+--  This package provides a software implementation of the HAL.Bitmap drawing
+--  primitives.
 
-package Test_Directories is
+package Filesystem is
 
-   Program_Abspath : constant String := Filesystem.Join
-     (Ada.Directories.Current_Directory, Ada.Command_Line.Command_Name);
-   --  Absolute path of the test executable
+   function Join
+     (Prefix, Suffix : String)
+      return String;
+   --  Like Ada.Directories.Compose, but also accepts a full path as Suffix.
+   --  For instance:
+   --
+   --     Join ("/a", "b")   => "/a/b"
+   --     Join ("/a", "b/c") => "/a/b/c"
+   --
+   --  If sufifx is an absolute path, just return Suffix.
 
-   Test_Dir : constant String := Ada.Directories.Containing_Directory
-     (Ada.Directories.Containing_Directory (Program_Abspath));
-   --  Absolute path to the test directory
-
-end Test_Directories;
+end Filesystem;

@@ -69,12 +69,12 @@ package body Bitmap.File_Output is
    -- Write_BMP_File --
    --------------------
 
-   procedure Write_BMP_File (File   : in out File_Handle'Class;
+   procedure Write_BMP_File (File   : File_Type;
                              Bitmap : Bitmap_Buffer'Class)
    is
       Hdr    : Header;
       Inf    : Info;
-      Status : Status_Kind;
+
       Row_Size    : constant Integer_32 := Integer_32 (Bitmap.Width * 24);
       Row_Padding : constant Integer_32 := (32 - (Row_Size mod 32)) mod 32 / 8;
       Data_Size   : constant Integer_32 := (Row_Size + Row_Padding) * Integer_32 (Bitmap.Height);
@@ -82,6 +82,8 @@ package body Bitmap.File_Output is
       RGB_Pix : Bitmap_Color;
       Pix_Out : UInt8_Array (1 .. 3);
       Padding : constant UInt8_Array (1 .. Integer (Row_Padding)) := (others => 0);
+
+      Output_Stream : Ada.Streams.Stream_IO.Stream_Access;
    begin
       Hdr.Signature := 16#4D42#;
       Hdr.Size      := (Data_Size + 54) / 4;
@@ -101,17 +103,9 @@ package body Bitmap.File_Output is
       Inf.Palette_Size := 0;
       Inf.Important := 0;
 
-      Status := File.Write (Hdr.Arr);
-
-      if Status /= Status_Ok then
-         raise Program_Error;
-      end if;
-
-      Status := File.Write (Inf.Arr);
-
-      if Status /= Status_Ok then
-         raise Program_Error;
-      end if;
+      Output_Stream := Ada.Streams.Stream_IO.Stream (File);
+      UInt8_Array'Write (Output_Stream, Hdr.Arr);
+      UInt8_Array'Write (Output_Stream, Inf.Arr);
 
       for Y in reverse 0 .. Bitmap.Height - 1 loop
          for X in 0 .. Bitmap.Width - 1 loop
@@ -122,18 +116,10 @@ package body Bitmap.File_Output is
             Pix_Out (2) := RGB_Pix.Green;
             Pix_Out (3) := RGB_Pix.Red;
 
-            Status := File.Write (Pix_Out);
-
-            if Status /= Status_Ok then
-               raise Program_Error;
-            end if;
+            UInt8_Array'Write (Output_Stream, Pix_Out);
          end loop;
 
-         Status := File.Write (Padding);
-
-         if Status /= Status_Ok then
-            raise Program_Error;
-         end if;
+         UInt8_Array'Write (Output_Stream, Padding);
       end loop;
    end Write_BMP_File;
 

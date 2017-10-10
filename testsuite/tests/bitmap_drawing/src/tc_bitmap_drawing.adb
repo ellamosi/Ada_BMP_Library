@@ -1,10 +1,10 @@
-with Test_Directories;     use Test_Directories;
-with Ada.Text_IO;          use Ada.Text_IO;
-with Bitmap;               use Bitmap;
-with Bitmap.Buffer;        use Bitmap.Buffer;
-with Bitmap.Filesystem;    use Bitmap.Filesystem;
-with Bitmap.File_Output;   use Bitmap.File_Output;
-with Bitmap.Memory_Mapped; use Bitmap.Memory_Mapped;
+with Test_Directories;      use Test_Directories;
+with Ada.Text_IO;           use Ada.Text_IO;
+with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
+with Bitmap;                use Bitmap;
+with Bitmap.Buffer;         use Bitmap.Buffer;
+with Bitmap.File_Output;    use Bitmap.File_Output;
+with Bitmap.Memory_Mapped;  use Bitmap.Memory_Mapped;
 with Compare_Files;
 
 procedure TC_Bitmap_Drawing is
@@ -31,29 +31,12 @@ procedure TC_Bitmap_Drawing is
       return Any_Bitmap_Buffer (BM);
    end Allocate_Bitmap;
 
-   FS       : FS_Driver;
-   BMP_File : Any_File_Handle;
-   Status   : Status_Kind;
+   BMP_File : Ada.Streams.Stream_IO.File_Type;
    BM       : constant not null Any_Bitmap_Buffer := Allocate_Bitmap;
 
    Filename : constant String := "test.bmp";
 begin
-   if FS.Create (Root_Dir => Test_Dir) /= Status_Ok then
-      raise Program_Error with "Cannot create native file system at '" &
-        Test_Dir & "'";
-   end if;
-
-   Status := FS.Create_Node (Filename, Regular_File);
-
-   if Status /= Status_Ok then
-      raise Program_Error with "Cannot Create BMP file";
-   end if;
-
-   Status := FS.Open (Filename, Write_Only, BMP_File);
-
-   if Status /= Status_Ok or else BMP_File = null then
-      raise Program_Error with "Cannot open BMP file";
-   end if;
+   Create (File => BMP_File, Mode => Out_File, Name => Filename);
 
    BM.Fill (Black);
    BM.Fill_Rounded_Rect (Color  => Green,
@@ -99,11 +82,8 @@ begin
               Height      => BM_Height / 4,
               Synchronous => True);
 
-
-   Write_BMP_File (BMP_File.all, BM.all);
-   if BMP_File.Close /= Status_Ok then
-      raise Program_Error with "Cannot close BMP file";
-   end if;
+   Write_BMP_File (BMP_File, BM.all);
+   Close (BMP_File);
 
    if not Compare_Files.Binnary_Equal (Test_Dir & "/" & Filename,
                                        Test_Dir & "/ref.bmp")
