@@ -7,6 +7,8 @@ with Bitmap.File_Output;    use Bitmap.File_Output;
 with Bitmap.Memory_Mapped;  use Bitmap.Memory_Mapped;
 with Compare_Files;
 
+with Bitmap.File_Input;     use Bitmap.File_Input;
+
 procedure TC_Bitmap_Drawing is
 
    BM_Width  : constant := 100;
@@ -84,6 +86,22 @@ begin
 
    Write_BMP_File (BMP_File, BM.all);
    Close (BMP_File);
+
+   declare
+      Bitmap : Any_Bitmap_Buffer;
+   begin
+      Open (File => BMP_File, Mode => In_File, Name => Filename);
+      Bitmap := Read_BMP_File (BMP_File);
+      Close (BMP_File);
+      Bitmap.Draw_Line (Color     => Yellow,
+                        Start     => (0, BM_Height - 1),
+                        Stop      => (BM_Width - 1, 0),
+                        Thickness => 1,
+                        Fast      => True);
+      Open (File => BMP_File, Mode => Out_File, Name => Filename);
+      Write_BMP_File (BMP_File, Bitmap.all);
+      Close (BMP_File);
+   end;
 
    if not Compare_Files.Binnary_Equal (Test_Dir & "/" & Filename,
                                        Test_Dir & "/ref.bmp")
