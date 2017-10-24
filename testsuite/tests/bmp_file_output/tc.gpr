@@ -1,4 +1,4 @@
-with "../../../bitmap/bitmap";
+with "../../../bitmap";
 
 project TC extends "../../utils/test_utils.gpr" is
 

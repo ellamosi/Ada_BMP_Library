@@ -1,4 +1,4 @@
-library project Bitmap extends "../common_config" is
+library project Bitmap extends "common_config" is
 
    Build := Common_Config.Build;
 
