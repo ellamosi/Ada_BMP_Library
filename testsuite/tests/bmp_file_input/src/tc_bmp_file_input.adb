@@ -1,3 +1,4 @@
+with Test_Directories;      use Test_Directories;
 with Ada.Text_IO;           use Ada.Text_IO;
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 with Bitmap;                use Bitmap;
@@ -32,8 +33,6 @@ procedure TC_BMP_File_Input is
    BMP_File : Ada.Streams.Stream_IO.File_Type;
    BM1 : constant not null Any_Bitmap_Buffer := Allocate_Bitmap;
    BM2 : Any_Bitmap_Buffer;
-
-   Filename : constant String := "ref.bmp";
 
    -------------------
    -- Bitmaps_Equal --
@@ -100,7 +99,7 @@ begin
               Height      => BM_Height / 4,
               Synchronous => True);
 
-   Open (File => BMP_File, Mode => In_File, Name => Filename);
+   Open (File => BMP_File, Mode => In_File, Name => Test_Dir & "/ref.bmp");
    BM2 := Read_BMP_File (BMP_File);
    Close (BMP_File);
 
