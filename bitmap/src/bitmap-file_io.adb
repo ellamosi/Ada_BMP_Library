@@ -29,9 +29,11 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with Interfaces; use Interfaces;
+with Interfaces;           use Interfaces;
+with Bitmap.Memory_Mapped; use Bitmap.Memory_Mapped;
+with System;
 
-package body Bitmap.File_Output is
+package body Bitmap.File_IO is
 
    type Header (As_Array : Boolean := True) is record
       case As_Array is
@@ -64,6 +66,83 @@ package body Bitmap.File_Output is
             Important     : Integer_32;
       end case;
    end record with Unchecked_Union, Pack, Size => 40 * 8;
+
+   -------------------
+   -- Read_BMP_File --
+   -------------------
+
+   function Read_BMP_File (File : File_Type) return not null Any_Bitmap_Buffer
+   is
+      function Allocate_Pixel_Data return System.Address;
+      procedure Read_Pixel_Data;
+
+      Input_Stream : Ada.Streams.Stream_IO.Stream_Access;
+
+      Hdr : Header;
+      Inf : Info;
+
+      Width  : Integer;
+      Height : Integer;
+
+      BM : constant Any_Memory_Mapped_Bitmap_Buffer := new Memory_Mapped_Bitmap_Buffer;
+
+      RGB_Pix : Bitmap_Color;
+      Pix_In  : UInt8_Array (1 .. 3);
+
+      -------------------------
+      -- Allocate_Pixel_Data --
+      -------------------------
+
+      function Allocate_Pixel_Data return System.Address is
+         type Pixel_Data is new Bitmap.UInt16_Array (1 .. Width * Height) with Pack;
+         Data : constant access Pixel_Data := new Pixel_Data;
+      begin
+         return Data.all'Address;
+      end Allocate_Pixel_Data;
+
+      ---------------------
+      -- Read_Pixel_Data --
+      ---------------------
+
+      procedure Read_Pixel_Data is
+         Row_Size    : constant Integer_32 := Integer_32 (Width * 24);
+         Row_Padding : constant Integer_32 := (32 - (Row_Size mod 32)) mod 32 / 8;
+
+         Padding : UInt8_Array (1 .. Integer (Row_Padding));
+      begin
+         for Y in reverse 0 .. Height - 1 loop
+            for X in 0 .. Width - 1 loop
+               UInt8_Array'Read (Input_Stream, Pix_In);
+
+               RGB_Pix.Blue  := Pix_In (1);
+               RGB_Pix.Green := Pix_In (2);
+               RGB_Pix.Red   := Pix_In (3);
+
+               BM.Set_Pixel ((X, Y), RGB_Pix);
+            end loop;
+
+            UInt8_Array'Read (Input_Stream, Padding);
+         end loop;
+      end Read_Pixel_Data;
+   begin
+      Input_Stream := Ada.Streams.Stream_IO.Stream (File);
+      UInt8_Array'Read (Input_Stream, Hdr.Arr);
+      UInt8_Array'Read (Input_Stream, Inf.Arr);
+
+      Width  := Integer (Inf.Width);
+      Height := Integer (Inf.Height);
+
+      BM.Actual_Width := Width;
+      BM.Actual_Height := Height;
+      BM.Actual_Color_Mode := RGB_565;
+      BM.Currently_Swapped := False;
+      BM.Addr := Allocate_Pixel_Data;
+
+      Set_Index (File, Positive_Count (Hdr.Offset + 1));
+      Read_Pixel_Data;
+
+      return Any_Bitmap_Buffer (BM);
+   end Read_BMP_File;
 
    --------------------
    -- Write_BMP_File --
@@ -123,4 +202,4 @@ package body Bitmap.File_Output is
       end loop;
    end Write_BMP_File;
 
-end Bitmap.File_Output;
+end Bitmap.File_IO;

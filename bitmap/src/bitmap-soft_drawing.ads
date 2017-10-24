@@ -29,7 +29,7 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
---  This package provides a software implementation of the HAL.Bitmap drawing
+--  This package provides a software implementation of the Bitmap.Buffer drawing
 --  primitives.
 
 with Bitmap.Buffer; use Bitmap.Buffer;
