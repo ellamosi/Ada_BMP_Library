@@ -32,8 +32,11 @@
 with Bitmap.Buffer;         use Bitmap.Buffer;
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
-package Bitmap.File_Input is
+package Bitmap.File_IO is
 
    function Read_BMP_File (File : File_Type) return not null Any_Bitmap_Buffer;
 
-end Bitmap.File_Input;
+   procedure Write_BMP_File (File   : File_Type;
+                             Bitmap : Bitmap_Buffer'Class);
+
+end Bitmap.File_IO;
