@@ -36,7 +36,7 @@ procedure TC_BMP_File_Output is
 
    Filename : constant String := "test.bmp";
 begin
-   Create (File => BMP_File, Mode => Out_File, Name => Filename);
+   Create (BMP_File, Out_File, Test_Dir & "/" & Filename);
 
    BM.Fill (Black);
    BM.Fill_Rounded_Rect (Color  => Green,
