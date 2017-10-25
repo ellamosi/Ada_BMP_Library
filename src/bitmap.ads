@@ -38,11 +38,13 @@ package Bitmap is
      with Size => 1;
    type UInt8 is new Interfaces.Unsigned_8;
    type UInt16 is new Interfaces.Unsigned_16;
+   type UInt24 is new Interfaces.Unsigned_24;
    type UInt32 is new Interfaces.Unsigned_32;
    type UInt65 is new Interfaces.Unsigned_32;
 
    type UInt8_Array is array (Natural range <>) of UInt8;
    type UInt16_Array is array (Natural range <>) of UInt16;
+   type UInt24_Array is array (Natural range <>) of UInt24;
    type UInt32_Array is array (Natural range <>) of UInt32;
 
    type Orientation_Mode is
