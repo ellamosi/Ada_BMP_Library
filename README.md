@@ -15,21 +15,18 @@ are available both for proprietary ("commercial") and non-proprietary use.
 For details, see the `LICENSE` file in the root directory.
 
 
-# 3. Requirements
+# 3. Getting started
 
-The software is written in Ada 2012 and uses, for example, preconditions,
-postconditions, and the high-level iterator form of for-loops.
+Clone the project into a directory of your choice. Add the dependency to your
+project, if you use a GPR based tool, just reference the bitmap project file 
+like so:
 
-In addition, a GNAT implementation-defined pragma is used extensively. This
-pragma makes it possible to avoid explicit temporary copies when assigning
-components of types representing hardware registers requiring full word or full
-half-word accesses. The pragma is named `Volatile_Full_Access`. Those persons
-wishing to submit additions to the library should see the GNAT Reference Manual
-for details.
+```
+with "../Ada_BMP_Library/bitmap";
+```
 
-Therefore, building with the sources requires a compiler supporting both Ada
-2012 and the GNAT-defined pragma `Volatile_Full_Access`. The "GNAT GPL 2016"
-compiler for ARM ELF is one such compiler [(Download it
-here)](http://libre.adacore.com/download/configurations). A recent GNAT Pro
-compiler for that target will also suffice.
+# 4. Requirements
+
+The software is written in Ada 2012 and can be used with a compiler like 
+"GNAT GPL 2017" [(Download it here)](http://libre.adacore.com/download/configurations).
 
