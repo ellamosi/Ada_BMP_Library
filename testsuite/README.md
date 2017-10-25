@@ -1,12 +1,3 @@
-Ada_Drivers_Library testsuite
-=============================
-
-Without nice emulator support, testing bare-board code is hard. The goal of
-this testsuite is to leverage the native support packages in this repository to
-test services and components that rely on native implementations for HAL
-interfaces.
-
-
 How to run the testsuite
 ------------------------
 
@@ -20,10 +11,6 @@ set of executed tests, run instead:
     ./run.py foo bar
 
 This will execute all tests that have either ``foo`` or ``bar`` in their name
-
-If Valgrind is available, add a ``--valgrind`` switch to detect memory issues
-such as invalid operations or leaks.
-
 
 How to write testcases
 ----------------------
