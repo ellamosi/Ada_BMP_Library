@@ -39,7 +39,9 @@
 --   COPYRIGHT(c) 2014 STMicroelectronics                                   --
 ------------------------------------------------------------------------------
 
-with HAL; use HAL;
+--  with HAL; use HAL;
+
+with Bitmap; use Bitmap;
 
 package BMP_Fonts is
 

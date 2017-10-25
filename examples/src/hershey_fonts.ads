@@ -32,7 +32,7 @@
 --  This package handles the Hershey font format.
 
 with Interfaces; use Interfaces;
-with HAL;        use HAL;
+with Bitmap;     use Bitmap;
 
 package Hershey_Fonts is
 

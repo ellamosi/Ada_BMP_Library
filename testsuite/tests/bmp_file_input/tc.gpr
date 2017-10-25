@@ -1,5 +1,3 @@
-with "../../../bitmap";
-
 project TC extends "../../utils/test_utils.gpr" is
 
    for Languages use ("Ada");
