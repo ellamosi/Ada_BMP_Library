@@ -6,6 +6,10 @@ This project aims to provide very basic bitmap image manipulation features
 and BMP file I/O to Ada programs. It's based on the bitmap handling capabilities
 of the [Ada Drivers Library](https://github.com/AdaCore/Ada_Drivers_Library) project.
 
+<p align="center">
+  <img src="https://github.com/ellamosi/Ada_BMP_Library/raw/master/testsuite/tests/bmp_file_output/ref.bmp?raw=true" alt="BMP Output Sample"/>
+</p>
+
 ## Features
 - Versatile buffer representation of bitmaps
 - BMP file reading (very limited support for now)
