@@ -29,7 +29,7 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-with Bitmap_Color_Conversion; use Bitmap_Color_Conversion;
+with Bitmap.Color_Conversion; use Bitmap.Color_Conversion;
 
 package body Bitmapped_Drawing is
 

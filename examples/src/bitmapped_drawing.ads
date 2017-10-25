@@ -34,8 +34,8 @@
 
 with BMP_Fonts;     use BMP_Fonts;
 with Hershey_Fonts; use Hershey_Fonts;
-with HAL;           use HAL;
-with HAL.Bitmap;    use HAL.Bitmap;
+with Bitmap;        use Bitmap;
+with Bitmap.Buffer; use Bitmap.Buffer;
 
 package Bitmapped_Drawing is
 
