@@ -95,7 +95,8 @@ package body Bitmap.File_IO is
 
       function Allocate_Pixel_Data return System.Address is
          type Pixel_Data is new Bitmap.UInt16_Array (1 .. Width * Height) with Pack;
-         Data : constant access Pixel_Data := new Pixel_Data;
+         type Pixel_Data_Access is access Pixel_Data;
+         Data : constant Pixel_Data_Access := new Pixel_Data;
       begin
          return Data.all'Address;
       end Allocate_Pixel_Data;
