@@ -3,7 +3,7 @@ How to run the testsuite
 
 First, make sure you have a Python 3 interpreter available, and then run:
 
-    ./run.py
+    alr exec -- ./run.py
 
 The standard output report should be obvious to read. In order to restrict the
 set of executed tests, run instead:

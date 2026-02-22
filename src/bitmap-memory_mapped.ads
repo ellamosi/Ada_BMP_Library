@@ -31,7 +31,6 @@
 
 with Bitmap.Soft_Drawing; use Bitmap.Soft_Drawing;
 with System;
-with Bitmap.Buffer;       use Bitmap.Buffer;
 
 package Bitmap.Memory_Mapped is
 
