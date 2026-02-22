@@ -502,7 +502,11 @@ package body Bitmap.Soft_Drawing is
 
    begin
       if Radius = 0 then
-         Dispatch (Buffer).Fill_Rect (Col, Area'Update (Position => (X0, Y0)));
+         Dispatch (Buffer).Fill_Rect
+           (Col,
+            (Position => (X0, Y0),
+             Width    => Area.Width,
+             Height   => Area.Height));
          return;
       end if;
 

@@ -31,6 +31,7 @@
 
 with System.Storage_Elements; use System.Storage_Elements;
 with Bitmap.Color_Conversion; use Bitmap.Color_Conversion;
+with Bitmap.Buffer;           use Bitmap.Buffer;
 
 package body Bitmap.Memory_Mapped is
 
